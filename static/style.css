@@ -1,0 +1,125 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; /* Remove default body margin */
+    background-color: #f4f4f4; /* Light gray background as fallback */
+    background-image: url('/static/background.jpeg'); /* Page background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333; /* Darker text color for better readability */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 30px; /* More padding */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    width: 90%; /* Responsive width */
+    max-width: 700px; /* Limit maximum width */
+    background-image: url('/static/box-background.jpg'); /* Box background (optional) */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative; /* For absolute positioning of loading indicator */
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px; /* More space below the heading */
+    color: #b30000; /* Darker blue for the heading */
+}
+
+label {
+    display: block; /* Make label a block element */
+    margin-bottom: 5px; /* Space below the label */
+    font-weight: bold; /* Make label text bold */
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px; /* More space below the input */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    font-size: 16px; /* Larger font size */
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    width: 100%; /* Make button full width */
+    display: block;  /* Ensure its a block */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#loading {
+    position: absolute; /* Absolute positioning within the container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Match container's border-radius */
+    z-index: 10; /* Ensure it's on top of other content */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+#error {
+    color: red;
+    margin-top: 10px;
+    text-align: center; /* Center the error message */
+    font-size: 16px;
+}
+
+#summaryContainer {
+    margin-top: 30px; /* More space above the summary */
+}
+
+#summaryContainer h2 {
+    color: #0e0e0f;
+    border-bottom: 2px solid #007bff; /* Underline the summary heading */
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+#summary {
+    white-space: pre-line; /* Preserve line breaks and spaces from the summary text */
+    line-height: 1.6;   /* Improve line spacing for readability */
+    font-size: 16px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+    input[type="text"], button {
+        font-size: 14px; /* Slightly smaller font on smaller screens */
+    }
+}

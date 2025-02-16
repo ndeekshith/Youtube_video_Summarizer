@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Summarizer</title>
+    <link rel="stylesheet" href="/static/style.css">  </head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Summarizer</h1>
+        <label for="youtubeUrl">Enter YouTube URL:</label>
+        <input type="text" id="youtubeUrl" placeholder="https://www.youtube.com/watch?v=...">
+        <button id="summarizeButton">Summarize</button>
+        <div id="loading" style="display: none;">Loading...</div>
+        <div id="error" style="display: none; color: red;"></div>
+        <div id="summaryContainer">
+            <h2>Summary</h2>
+            <p id="summary"></p>
+        </div>
+    </div>
+    <script>
+        const summarizeButton = document.getElementById('summarizeButton');
+        const youtubeUrlInput = document.getElementById('youtubeUrl');
+        const loadingIndicator = document.getElementById('loading');
+        const errorDiv = document.getElementById('error');
+        const summaryParagraph = document.getElementById('summary');
+
+        summarizeButton.addEventListener('click', async () => {
+            const youtubeUrl = youtubeUrlInput.value;
+            errorDiv.style.display = 'none'; // Hide previous errors
+            summaryParagraph.textContent = ''; // Clear previous summary
+
+            if (!youtubeUrl) {
+                errorDiv.textContent = 'Please enter a YouTube URL.';
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            loadingIndicator.style.display = 'block';
+            summarizeButton.disabled = true;
+
+            try {
+                const response = await fetch('/summarize', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ youtube_url: youtubeUrl }), // Use youtube_url
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    errorDiv.textContent = errorData.error || 'An error occurred.';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+
+                const data = await response.json();
+                summaryParagraph.textContent = data.summary;
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                errorDiv.textContent = 'An unexpected error occurred.';
+                errorDiv.style.display = 'block';
+            } finally {
+                loadingIndicator.style.display = 'none';
+                summarizeButton.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
