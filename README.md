@@ -80,7 +80,11 @@ pip install -r requirements.txt
 
 ## 3. Running the Application
 
-From the project's root directory (where `api.py` and `main.py` are), run:
+From the project's root directory (where `api.py`,`main.py` and `model.py` are), run:
+ first load the model to install it in locally then run api
+```bash
+python model.py
+```
 
 ```bash
 python api.py
