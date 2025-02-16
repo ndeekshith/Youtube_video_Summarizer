@@ -1,4 +1,5 @@
 ![](static/p1.png)
+![](static/p2.png)
 
 # YouTube Video Summarizer
 
@@ -18,7 +19,6 @@ This project provides a web interface to summarize YouTube videos. It downloads 
 7. [Advanced Usage](#advanced-usage)
    - [Using a Different Summarization Model](#using-a-different-summarization-model)
    - [Using a GPU](#using-a-gpu)
-   - [Deployment](#deployment)
 8. [License](#license)
 
 ## 1. Prerequisites
